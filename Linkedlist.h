@@ -23,11 +23,13 @@ using namespace std;
 
 class Linkedlist {
 public:
-    Linkedlist(); //Default constructor done
-    Linkedlist(const Linkedlist &orig); //Confused on how to do this
+    element_type size();
+    Linkedlist(); //Done
+    Linkedlist(const Linkedlist &orig); //Don't know how to implement
     explicit Linkedlist(unsigned int n); //Done
-    virtual ~Linkedlist(); //A little confused on how to do this
+    virtual ~Linkedlist(); //Confused on what's different b/w this and clear
     void check() const; //Done
+    void rcheck() const; //Done
     bool empty() const; //Done
     void clear(); //Done
     reference back();//Done
@@ -37,7 +39,7 @@ public:
     //Linkedlist& operator=(const Linkedlist& l); //Confused
     void pop_back(); //Done
     void pop_front(); //Done
-    int size();
+    void insert(unsigned int pos, const element_type& x);
 
 private:
     struct Node

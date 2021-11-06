@@ -13,22 +13,17 @@
 
 #include "Linkedlist.h"
 
-//My personal methods
-int Linkedlist::size(){
+element_type Linkedlist::size(){
+    Node *current = head;
     if (head == NULL){
         return 0;
     }
-    Node *tmp = head;
-    int count = 0;
-    for (count = 1; tmp->next != NULL; count++){
-        tmp = tmp->next; //Counts the amount of Nodes in the list
-        cout << count << endl;
-    } 
+    int count = 0; //Equals 1 to account for the head node
+    for (count = 0; current->next != NULL; count++){
+        current = current->next;
+    }
     return count;
 }
-
-
-//Constructors:
 
 Linkedlist::Linkedlist() {//Default
     Node * tmp = new Node;
@@ -40,14 +35,14 @@ Linkedlist::Linkedlist() {//Default
 Linkedlist::Linkedlist(const Linkedlist& orig) { //Copy
 }
 
-Linkedlist::~Linkedlist(){
+/*Linkedlist::~Linkedlist(){
     Node *tmp = head;
     while (tmp != NULL){
         head = head->next;
         delete(tmp);
         tmp = head;
     }
-}
+}*/
 
 Linkedlist::Linkedlist(unsigned int n){ //Create a linked list of size n
     //Making the first node (head).
@@ -90,6 +85,22 @@ void Linkedlist::check() const
     {
         cout << "Node " << i << "\tElem: " << '\t' << current->elem << "\tAddress: " << current << "\tNext Address: " << current->next << endl;
         current = current->next;
+        i++;
+    }
+    
+    cout << "----------------------------------------------------------------------" << endl;
+}
+
+void Linkedlist::rcheck() const{
+    Node *current = tail;
+    if (current == NULL)
+        cout << "It is an empty list!" << endl;
+    
+    int i = 0;
+    while (current != NULL) 
+    {
+        cout << "Node " << i << "\tElem: " << '\t' << current->elem << "\tAddress: " << current << "\tNext Address: " << current->next << endl;
+        current = current->prev;
         i++;
     }
     
@@ -148,6 +159,49 @@ void Linkedlist::pop_front(){
         head = tmp;
         head->prev = NULL;
     }
+}
+
+void Linkedlist::insert(unsigned int pos, const element_type& x){
+    
+    //Need to iterate to the pos with Node *current
+    if (pos > 0 && pos < this->size()){ //Not sure what my condition needs to be here
+        Node *Current = head;
+        Node *tmp = new Node();
+        for (int i = 0; i < pos - 1; i++){
+            Current = Current->next;
+        }
+         //Once at 1 before the pos indicated, we need to set our next = to a tmp variable
+        //Set the tmp variables
+        tmp->elem = x;
+        tmp->prev = Current;
+        tmp->next = Current->next;
+        //Make sure that tmp is linked
+        Current->next = tmp;
+    }
+    if(pos == 0){
+        Node *tmp = new Node(); //Make a new node and set variables
+        tmp->next = head;
+        tmp->prev = NULL;
+        tmp->elem = x;
+        head->prev = tmp;
+        head = tmp;
+
+    }
+    else{  //This is the only part not working
+        Node *current = head;
+        for (int i = 0; current->next != NULL; i++){ //Iterate to the last spot in the list
+            current = current->next;
+        }
+        Node *tmp = new Node();
+        tmp->prev = tail;
+        tmp->elem = x;
+        tmp->next = NULL;
+        tail->next = tmp;
+        tail = tmp;
+    }
+
+
+
 }
 
 

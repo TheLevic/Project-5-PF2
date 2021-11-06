@@ -34,6 +34,9 @@ int main() {
     }
     a = Linkedlist(20);
     a.check();
+    a.insert(1,39);
+    a.check();
+    cout << a.size();
 
 
     return 0;
