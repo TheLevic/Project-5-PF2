@@ -40,6 +40,7 @@ public:
     void pop_back(); //Done
     void pop_front(); //Done
     void insert(unsigned int pos, const element_type& x);
+    void erase(unsigned int pos); //Done
 
 private:
     struct Node

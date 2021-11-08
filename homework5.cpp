@@ -34,10 +34,10 @@ int main() {
     }
     a = Linkedlist(20);
     a.check();
-    a.insert(1,39);
+    a.insert(2,27);
     a.check();
-    cout << a.size();
-
+    a.erase(2);
+    a.check();
 
     return 0;
 }

@@ -164,7 +164,7 @@ void Linkedlist::pop_front(){
 void Linkedlist::insert(unsigned int pos, const element_type& x){
     
     //Need to iterate to the pos with Node *current
-    if (pos > 0 && pos < this->size()){ //Not sure what my condition needs to be here
+    if (pos > 0){ //Not sure what my condition needs to be here
         Node *Current = head;
         Node *tmp = new Node();
         for (int i = 0; i < pos - 1; i++){
@@ -187,7 +187,7 @@ void Linkedlist::insert(unsigned int pos, const element_type& x){
         head = tmp;
 
     }
-    else{  //This is the only part not working
+    /*else{  //This is the only part not working
         Node *current = head;
         for (int i = 0; current->next != NULL; i++){ //Iterate to the last spot in the list
             current = current->next;
@@ -198,13 +198,25 @@ void Linkedlist::insert(unsigned int pos, const element_type& x){
         tmp->next = NULL;
         tail->next = tmp;
         tail = tmp;
-    }
-
-
-
+    }*/
 }
 
-
+//Erases the node at position pos
+void Linkedlist::erase(unsigned int pos){
+    //Need to get to one before the position and set a tmp variable = to it.
+    Node *current = head;
+    for (int i = 0; i < pos - 1; i++){
+        current = current->next;
+    }
+    Node *tmp = current; //At the Node before the one to be deleted
+    current = current->next;//Node to be deleted
+    Node *tmp2 = current; //Node to be deleted
+    cout << "Supposed to be deleting" << tmp2->elem << endl;
+    current = current->next; //Node after
+    tmp->next = current;
+    current->prev = tmp;
+    delete tmp2;
+}
 
 
 
