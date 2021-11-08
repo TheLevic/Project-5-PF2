@@ -36,7 +36,11 @@ int main() {
     a.check();
     a.insert(2,27);
     a.check();
-    a.erase(2);
+    a.erase(0);
+    a.check();
+    a.push_back(10);
+    a.check();
+    a.push_front(11);
     a.check();
 
     return 0;

@@ -13,26 +13,11 @@
 
 #include "Linkedlist.h"
 
-element_type Linkedlist::size(){
-    Node *current = head;
-    if (head == NULL){
-        return 0;
-    }
-    int count = 0; //Equals 1 to account for the head node
-    for (count = 0; current->next != NULL; count++){
-        current = current->next;
-    }
-    return count;
-}
-
 Linkedlist::Linkedlist() {//Default
     Node * tmp = new Node;
     head = tail = tmp;
     tmp->next = NULL;
     tmp->prev = NULL;
-}
-
-Linkedlist::Linkedlist(const Linkedlist& orig) { //Copy
 }
 
 /*Linkedlist::~Linkedlist(){
@@ -204,18 +189,47 @@ void Linkedlist::insert(unsigned int pos, const element_type& x){
 //Erases the node at position pos
 void Linkedlist::erase(unsigned int pos){
     //Need to get to one before the position and set a tmp variable = to it.
-    Node *current = head;
-    for (int i = 0; i < pos - 1; i++){
+    if (pos == 0){
+        Node *tmp = head;
+        Node *current = head;
         current = current->next;
+        current->prev = NULL;
+        head = current;
+        delete tmp;
     }
-    Node *tmp = current; //At the Node before the one to be deleted
-    current = current->next;//Node to be deleted
-    Node *tmp2 = current; //Node to be deleted
-    cout << "Supposed to be deleting" << tmp2->elem << endl;
-    current = current->next; //Node after
-    tmp->next = current;
-    current->prev = tmp;
-    delete tmp2;
+    if (pos != 0){
+        Node *current = head;
+        for (int i = 0; i < pos - 1; i++){
+                current = current->next;
+        }
+        Node *tmp = current; //At the Node before the one to be deleted
+        current = current->next;//Node to be deleted
+        Node *tmp2 = current; //Node to be deleted
+        cout << "Supposed to be deleting" << tmp2->elem << endl;
+        current = current->next; //Node after
+        tmp->next = current;
+        current->prev = tmp;
+        delete tmp2;
+    }
+    
+}
+
+void Linkedlist::push_back( const element_type& x ){
+    Node *tmp = new Node();
+    tmp->elem = x;
+    tmp->next = NULL;
+    tmp->prev = tail;
+    tail->next = tmp;
+    tail = tmp;
+}
+
+void Linkedlist::push_front( const element_type& x ){
+    Node *tmp = new Node();
+    tmp->elem = x;
+    tmp->next = head;
+    tmp->prev = NULL;
+    head->prev = tmp;
+    head = tmp;
 }
 
 

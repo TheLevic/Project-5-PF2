@@ -23,9 +23,7 @@ using namespace std;
 
 class Linkedlist {
 public:
-    element_type size();
     Linkedlist(); //Done
-    Linkedlist(const Linkedlist &orig); //Don't know how to implement
     explicit Linkedlist(unsigned int n); //Done
     virtual ~Linkedlist(); //Confused on what's different b/w this and clear
     void check() const; //Done
@@ -36,10 +34,13 @@ public:
     const_reference back() const; //Done
     reference front(); //Done
     const_reference front() const; //Done
-    //Linkedlist& operator=(const Linkedlist& l); //Confused
+    //Linkedlist& operator=(const Linkedlist& l); //Need to do
     void pop_back(); //Done
     void pop_front(); //Done
-    void insert(unsigned int pos, const element_type& x);
+    void push_back ( const element_type& x ); //Done
+    void push_front ( const element_type& x ); //Done
+    void sort ( ); //Need to do
+    void insert(unsigned int pos, const element_type& x); //Need to finish the very last part, everything else is done
     void erase(unsigned int pos); //Done
 
 private:
