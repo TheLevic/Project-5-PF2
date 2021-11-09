@@ -32,11 +32,8 @@ int main() {
     if (a.empty() == true){
         cout << "Empty!" << endl << endl;
     }
-    a = Linkedlist(21);
-    a.check();
-    a.insert(22,27);
-    a.check();
-    a.erase(0);
+    a = Linkedlist(20);
+
     a.check();
     a.push_back(10);
     a.check();

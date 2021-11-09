@@ -29,6 +29,9 @@ Linkedlist::~Linkedlist(){
     }
 }
 
+Linkedlist& Linkedlist::operator=(const Linkedlist& l){
+}
+
 Linkedlist::Linkedlist(unsigned int n){ //Create a linked list of size n
     //Making the first node (head).
     head = new Node();
@@ -51,11 +54,6 @@ Linkedlist::Linkedlist(unsigned int n){ //Create a linked list of size n
         
         tail = node; //Setting the new node to the new tail
     }
-}
-
-
-Linkedlist::~Linkedlist() { //Destructor
-
 }
 
 void Linkedlist::check() const
@@ -164,7 +162,6 @@ void Linkedlist::insert(unsigned int pos, const element_type& x){
             }
             else{
                 Current = Current->next;
-                cout << Current->elem << endl;
             }
         }
          //Once at 1 before the pos indicated, we need to set our next = to a tmp variable
@@ -172,7 +169,6 @@ void Linkedlist::insert(unsigned int pos, const element_type& x){
         Node *tmp = new Node();
         tmp->elem = x;
         tmp->prev = Current;
-        cout << Current->prev->elem;
         tmp->next = Current->next;
         //Make sure that tmp is linked
         Current->next = tmp;
@@ -209,7 +205,6 @@ void Linkedlist::erase(unsigned int pos){
         Node *tmp = current; //At the Node before the one to be deleted
         current = current->next;//Node to be deleted
         Node *tmp2 = current; //Node to be deleted
-        cout << "Supposed to be deleting" << tmp2->elem << endl;
         current = current->next; //Node after
         tmp->next = current;
         current->prev = tmp;

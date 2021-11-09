@@ -34,7 +34,7 @@ public:
     const_reference back() const; //Done
     reference front(); //Done
     const_reference front() const; //Done
-    //Linkedlist& operator=(const Linkedlist& l); //Need to do
+    Linkedlist& operator=(const Linkedlist& l); //Need to do
     void pop_back(); //Done
     void pop_front(); //Done
     void push_back ( const element_type& x ); //Done
