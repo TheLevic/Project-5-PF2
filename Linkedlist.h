@@ -39,9 +39,10 @@ public:
     void pop_front(); //Done
     void push_back ( const element_type& x ); //Done
     void push_front ( const element_type& x ); //Done
-    void sort ( ); //Need to do
+    void sort(); //Doing
     void insert(unsigned int pos, const element_type& x); //Need to finish the very last part, everything else is done
     void erase(unsigned int pos); //Done
+    
 
 private:
     struct Node
@@ -52,6 +53,7 @@ private:
     };
     Node *head;
     Node *tail;
+    void swap(Node *a, Node *b);
 
     
 

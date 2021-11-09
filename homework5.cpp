@@ -42,6 +42,7 @@ int main() {
     a.check();
     a.push_front(11);
     a.check();
+    a.sort();
 
     return 0;
 }

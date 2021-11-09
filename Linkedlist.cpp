@@ -232,8 +232,35 @@ void Linkedlist::push_front( const element_type& x ){
     head = tmp;
 }
 
+void Linkedlist::sort(){
+    Node *current = head;
+    if (current == NULL || current->next == NULL){
+        return;
+    }
+    else{
+        for (int i = 0; current->next != NULL; current = current->next){
+            int value1;
+            int value2;
+            value1 = current->elem;
+            value2 = current->next->elem;
+            if (value1 > value2){
+                swap(current, current->next);
+            }
+        }
+    }
+}
 
-
-
-
-
+void Linkedlist::swap(Node *a, Node *b){
+    if (a->prev != NULL){
+        a->prev->next = b;
+        cout << "is this running?";
+    }
+    if (b->next != NULL){
+        b->next->prev = a;
+    }
+    a->next = b->next;
+    b->prev = a->prev;
+    a->prev = b;
+    b->next = a;
+    
+}
