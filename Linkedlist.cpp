@@ -20,14 +20,14 @@ Linkedlist::Linkedlist() {//Default
     tmp->prev = NULL;
 }
 
-/*Linkedlist::~Linkedlist(){
+Linkedlist::~Linkedlist(){
     Node *tmp = head;
     while (tmp != NULL){
         head = head->next;
         delete(tmp);
         tmp = head;
     }
-}*/
+}
 
 Linkedlist::Linkedlist(unsigned int n){ //Create a linked list of size n
     //Making the first node (head).
@@ -149,41 +149,45 @@ void Linkedlist::pop_front(){
 void Linkedlist::insert(unsigned int pos, const element_type& x){
     
     //Need to iterate to the pos with Node *current
-    if (pos > 0){ //Not sure what my condition needs to be here
+    if (head != NULL){
+        if (pos > 0){ //Not sure what my condition needs to be here
         Node *Current = head;
-        Node *tmp = new Node();
         for (int i = 0; i < pos - 1; i++){
-            Current = Current->next;
+            if (Current->next == NULL){
+                Node *tmp = new Node();
+                tmp->elem = x;
+                tmp->prev = tail;
+                tmp->next = NULL;
+                tail->next = tmp;
+                tail = tmp;
+                return;
+            }
+            else{
+                Current = Current->next;
+                cout << Current->elem << endl;
+            }
         }
          //Once at 1 before the pos indicated, we need to set our next = to a tmp variable
         //Set the tmp variables
+        Node *tmp = new Node();
         tmp->elem = x;
         tmp->prev = Current;
+        cout << Current->prev->elem;
         tmp->next = Current->next;
         //Make sure that tmp is linked
         Current->next = tmp;
-    }
-    if(pos == 0){
-        Node *tmp = new Node(); //Make a new node and set variables
-        tmp->next = head;
-        tmp->prev = NULL;
-        tmp->elem = x;
-        head->prev = tmp;
-        head = tmp;
-
-    }
-    /*else{  //This is the only part not working
-        Node *current = head;
-        for (int i = 0; current->next != NULL; i++){ //Iterate to the last spot in the list
-            current = current->next;
         }
-        Node *tmp = new Node();
-        tmp->prev = tail;
-        tmp->elem = x;
-        tmp->next = NULL;
-        tail->next = tmp;
-        tail = tmp;
-    }*/
+        if(pos == 0){
+                Node *tmp = new Node(); //Make a new node and set variables
+                tmp->next = head;
+                tmp->prev = NULL;
+                tmp->elem = x;
+                head->prev = tmp;
+                head = tmp;
+
+        }
+    }
+    
 }
 
 //Erases the node at position pos
@@ -215,16 +219,16 @@ void Linkedlist::erase(unsigned int pos){
 }
 
 void Linkedlist::push_back( const element_type& x ){
-    Node *tmp = new Node();
-    tmp->elem = x;
-    tmp->next = NULL;
-    tmp->prev = tail;
+    Node *tmp = new Node(); //Creating new node
+    tmp->elem = x; //Giving it the proper element
+    tmp->next = NULL; //Since it is at the back the last will be null
+    tmp->prev = tail; //Setting proper tail values
     tail->next = tmp;
     tail = tmp;
 }
 
 void Linkedlist::push_front( const element_type& x ){
-    Node *tmp = new Node();
+    Node *tmp = new Node(); //Same as above but opposite
     tmp->elem = x;
     tmp->next = head;
     tmp->prev = NULL;
@@ -233,34 +237,19 @@ void Linkedlist::push_front( const element_type& x ){
 }
 
 void Linkedlist::sort(){
-    Node *current = head;
-    if (current == NULL || current->next == NULL){
-        return;
-    }
-    else{
-        for (int i = 0; current->next != NULL; current = current->next){
-            int value1;
-            int value2;
-            value1 = current->elem;
-            value2 = current->next->elem;
-            if (value1 > value2){
-                swap(current, current->next);
+    bool sort= true;
+    while(sort){
+
+        sort = false; //To stop the loop;
+        Node *current = head;
+        while (current != NULL){
+            if (current->next != NULL){
+                if (current->elem > current->next->elem){
+                    swap(current->elem,current->next->elem);
+                    sort= true;
+                }
             }
+          current = current->next;
         }
     }
-}
-
-void Linkedlist::swap(Node *a, Node *b){
-    if (a->prev != NULL){
-        a->prev->next = b;
-        cout << "is this running?";
-    }
-    if (b->next != NULL){
-        b->next->prev = a;
-    }
-    a->next = b->next;
-    b->prev = a->prev;
-    a->prev = b;
-    b->next = a;
-    
 }

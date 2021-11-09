@@ -25,7 +25,7 @@ class Linkedlist {
 public:
     Linkedlist(); //Done
     explicit Linkedlist(unsigned int n); //Done
-    virtual ~Linkedlist(); //Confused on what's different b/w this and clear
+    virtual ~Linkedlist(); //Done
     void check() const; //Done
     void rcheck() const; //Done
     bool empty() const; //Done
@@ -39,8 +39,8 @@ public:
     void pop_front(); //Done
     void push_back ( const element_type& x ); //Done
     void push_front ( const element_type& x ); //Done
-    void sort(); //Doing
-    void insert(unsigned int pos, const element_type& x); //Need to finish the very last part, everything else is done
+    void sort(); //Done
+    void insert(unsigned int pos, const element_type& x); //Done
     void erase(unsigned int pos); //Done
     
 
@@ -53,7 +53,7 @@ private:
     };
     Node *head;
     Node *tail;
-    void swap(Node *a, Node *b);
+    
 
     
 
